@@ -1,4 +1,6 @@
 require 'webrick'
+require "erb"
+require "csv"
 
 # How we require another ruby script from our directory
 require_relative 'database'
@@ -35,11 +37,11 @@ class AddPerson < WEBrick::HTTPServlet::AbstractServlet
     name = request.query["name"]
     phone_number = request.query["phone_number"]
     # You do the rest here
-    address = ""
-    position = ""
-    salary = ""
-    slack_account = ""
-    github_account = ""
+    address = request.query["address"]
+    position = request.query["position"]
+    salary = request.query["salary"]
+    slack_account = request.query["slack_account"]
+    github_account = request.query["github_account"]
 
     # Add the person
     # person = $database.SOME_METHOD_HERE
@@ -71,7 +73,7 @@ class SearchPerson < WEBrick::HTTPServlet::AbstractServlet
     name = "" # <<== replace this with getting the name from the request
 
     # Find the person (you figure out what method to call, some_method_here is wrong)
-    person = $database.some_method_here(name)
+    person = $database.search(name)
 
     erb_template_string = File.read("search-results.html.erb")
     template = ERB.new(erb_template_string)
