@@ -8,13 +8,31 @@
     <!-- Figure out how to handle the case where we found a person
     and where we did NOT find a person -->
 
+    <% if person %>
     <h1>Hooray! We found a person</h1>
 
     <ul>
-      <li>Name: <%= "SOMETHING GOES HERE" %></li>
-      <li>Address: <%= "SOMETHING GOES HERE" %></li>
-      <!-- <li>In their own <li>s add other attributes of a person here </li> -->
-      <!-- e.g. there should be as many <li> as there are attributes of a person -->
+      <li>Name: <%= person.name %></li>
+      <li>Phone: <%= person.phone_number %></li>
+      <li>Address: <%= person.address %></li>
+      <li>Position: <%= person.position %></li>
+      <li>Salary: <%= person.salary %></li>
+      <li>Slack account: <%= person.slack_account %></li>
+      <li>Github account: <%= person.github_account %></li>
+
+    </ul>
+    <% else %>
+      Apologies, that person is currently not part of our database
+    <% end %>
+
+
+    <h1>What would you like to do next?</h1>
+
+    <ul>
+      <li><a href="/prompt-to-add">Add a person</a></li>
+      <li><a href="/prompt-to-search">Search a person</a></li>
+      <li><a href="/prompt-to-delete">Delete a person</a></li>
+      <li><a href="/report">Generate a report</a></li>
     </ul>
   </body>
 </html>

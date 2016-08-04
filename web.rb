@@ -97,8 +97,8 @@ end
 
 class Report < WEBrick::HTTPServlet::AbstractServlet
   def do_GET(request, response)
-    report = request.query[report]
-    person = $database.search
+    report = request.query["name"]
+    person = $database.search(report)
     erb_template_string = File.read("report.html.erb")
     template = ERB.new(erb_template_string)
     output   = template.result(binding)
