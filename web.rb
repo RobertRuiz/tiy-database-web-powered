@@ -69,9 +69,8 @@ end
 
 class SearchPerson < WEBrick::HTTPServlet::AbstractServlet
   def do_GET(request, response)
-    name = request.query["name"] # <<== replace this with getting the name from the request
+    name = request.query["name"]
 
-    # Find the person (you figure out what method to call, some_method_here is wrong)
     person = $database.search(name)
 
     erb_template_string = File.read("search-result.html.erb")
@@ -84,6 +83,35 @@ class SearchPerson < WEBrick::HTTPServlet::AbstractServlet
   end
 end
 
+class PromptToDeletePerson < WEBrick::HTTPServlet::AbstractServlet
+  def do_GET(request, response)
+    erb_template_string = File.read("prompt-to-delete.html.erb")
+    template = ERB.new(erb_template_string)
+    output   = template.result(binding)
+
+    response.body = output
+    response.content_type = "text/html"
+    response.status = 200
+  end
+end
+
+class DeletePerson < WEBrick::HTTPServlet::AbstractServlet
+  def do_GET(request, response)
+    name = request.query["name"]
+
+    person = $database.delete(name)
+
+    erb_template_string = File.read("delete-result.html.erb")
+    template = ERB.new(erb_template_string)
+    output   = template.result(binding)
+
+    response.body = output
+    response.content_type = "text/html"
+    response.status = 200
+  end
+end
+
+
 server = WEBrick::HTTPServer.new(Port: 3000)
 server.mount "/", HomePage
 server.mount "/prompt-to-add", PromptToAddPerson
@@ -92,5 +120,7 @@ server.mount "/add", AddPerson
 server.mount "/prompt-to-search", PromptToSearchPerson
 server.mount "/search", SearchPerson
 
-# See if you can implement delete!!!
+server.mount "/prompt-to-delete", PromptToDeletePerson
+server.mount "/delete", DeletePerson
+
 server.start
