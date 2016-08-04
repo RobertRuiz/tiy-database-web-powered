@@ -43,7 +43,7 @@ class AddPerson < WEBrick::HTTPServlet::AbstractServlet
     github_account = request.query["github_account"]
 
     # Add the person
-    person = $database.new(name)
+    person = $database.add(name, phone_number, address, position, salary, slack_account, github_account)
 
     erb_template_string = File.read("added.html.erb")
     template = ERB.new(erb_template_string)
