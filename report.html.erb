@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Report</title>
+  </head>
+  <body>
+    <h1>Your wish for a report is our command</h1>
+
+    <%= report %>
+    <ul>
+      <li>Name: <%= person.name %></li>
+      <li>Phone: <%= person.phone_number %></li>
+      <li>Address: <%= person.address %></li>
+      <li>Position: <%= person.position %></li>
+      <li>Salary: <%= person.salary %></li>
+      <li>slack_account: <%= person.slack_account %></li>
+      <li>github_account: <%= person.github_account %></li>
+
+    </ul>
+    <h1>What would you like to do next?</h1>
+
+    <ul>
+      <li><a href="/prompt-to-add">Add a person</a></li>
+      <li><a href="/prompt-to-search">Search a person</a></li>
+      <li><a href="/prompt-to-delete">Delete a person</a></li>
+      <li><a href="/report">Generate another report</a></li>
+    </ul>
+  </body>
+</html>

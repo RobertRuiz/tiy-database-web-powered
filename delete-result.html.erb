@@ -9,8 +9,9 @@
     and where we did NOT find a person -->
 
     <% if person %>
-    <h1>Deletion was successful</h1>
+    <h1>Deletion was successful!</h1>
 
+    <h2> The following data was removed from our database:</h2>
     <ul>
       <li>Name: <%= person.name %></li>
       <li>Phone: <%= person.phone_number %></li>
@@ -21,8 +22,27 @@
       <li>Github account: <%= person.github_account %></li>
 
     </ul>
+
+    <h1>What would you like to do next?</h1>
+
+      <ul>
+        <li><a href="/prompt-to-add">Add a person</a></li>
+        <li><a href="/prompt-to-search">Search a person</a></li>
+        <li><a href="/report">Generate a report</a></li>
+      </ul>
+
     <% else %>
-      Apologies, that person could not be found and may have already been deleted
+      <h2> Apologies, that person could not be found and may have already been deleted </h2>
+      <li><a href="/prompt-to-delete">Would like to try and Delete a different person</a></li>
+
+      or
+      <h1>What would you like to do next?</h1>
+
+        <ul>
+          <li><a href="/prompt-to-add">Add a person</a></li>
+          <li><a href="/prompt-to-search">Search a person</a></li>
+          <li><a href="/report">Generate a report</a></li>
+        </ul>
     <% end %>
 
   </body>
