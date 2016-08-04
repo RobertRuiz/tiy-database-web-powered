@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Delete a Person</title>
+  </head>
+  <body>
+    <!-- Figure out how to handle the case where we found a person
+    and where we did NOT find a person -->
+
+    <% if person %>
+    <h1>Deletion was successful</h1>
+
+    <ul>
+      <li>Name: <%= person.name %></li>
+      <li>Phone: <%= person.phone_number %></li>
+      <li>Address: <%= person.address %></li>
+      <li>Position: <%= person.position %></li>
+      <li>Salary: <%= person.salary %></li>
+      <li>Slack account: <%= person.slack_account %></li>
+      <li>Github account: <%= person.github_account %></li>
+
+    </ul>
+    <% else %>
+      Apologies, that person could not be found and may have already been deleted
+    <% end %>
+
+  </body>
+</html>

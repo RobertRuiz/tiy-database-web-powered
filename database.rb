@@ -67,7 +67,7 @@ class Database
     end
   end
 
-  def save_to_csv
+  def save_to_csv # not working?
     CSV.open(CSV_FILE_NAME, 'w') do |csv|
       csv << %w{name phone address position salary slack_account github_account}
       @people.each do |person|
