@@ -83,22 +83,10 @@ class SearchPerson < WEBrick::HTTPServlet::AbstractServlet
   end
 end
 
-class PromptForReport < WEBrick::HTTPServlet::AbstractServlet
-  def do_GET(request, response)
-    erb_template_string = File.read("prompt-for-report.html.erb")
-    template = ERB.new(erb_template_string)
-    output   = template.result(binding)
-
-    response.body = output
-    response.content_type = "text/html"
-    response.status = 200
-  end
-end
-
 class Report < WEBrick::HTTPServlet::AbstractServlet
   def do_GET(request, response)
-    report = request.query["name"]
-    person = $database.search(report)
+    people = $database.people
+
     erb_template_string = File.read("report.html.erb")
     template = ERB.new(erb_template_string)
     output   = template.result(binding)
@@ -148,7 +136,6 @@ server.mount "/search", SearchPerson
 server.mount "/prompt-to-delete", PromptToDeletePerson
 server.mount "/delete", DeletePerson
 
-server.mount "/prompt-for-report", PromptForReport
 server.mount "/report", Report
 
 server.start

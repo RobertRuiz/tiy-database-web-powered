@@ -14,9 +14,7 @@ require_relative "person"
 class Database
   CSV_FILE_NAME = "employee.csv"
 
-  # NOTE: We are not providing any `attr_accessor` or otherwise since we don't
-  #       want any *outside* access to the array of people. All interaction
-  #       should happen through the methods found here
+  attr_reader :people
 
   def initialize
     @people = []

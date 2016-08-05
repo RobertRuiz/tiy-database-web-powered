@@ -4,10 +4,17 @@
     <meta charset="utf-8">
     <title>Report</title>
   </head>
+  <style>
+    ul {
+      padding-bottom: 10px;
+      border-bottom: 5px solid grey;
+      list-style: none;
+    }
+  </style>
   <body>
     <h1>Your wish for a report is our command</h1>
 
-  <!-- <%loop do %> -->
+  <% people.each do |person| %>
     <ul>
       <li>Name: <%= person.name %></li>
       <li>Phone: <%= person.phone_number %></li>
@@ -16,8 +23,9 @@
       <li>Salary: <%= person.salary %></li>
       <li>slack_account: <%= person.slack_account %></li>
       <li>github_account: <%= person.github_account %></li>
-
     </ul>
+  <% end %>
+
     <h1>What would you like to do next?</h1>
 
     <ul>
